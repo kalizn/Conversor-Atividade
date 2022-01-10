@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+import { Home } from './src/Home';
+import { Euro } from './src/Euro';
+import { Dolar } from './src/Dolar';
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='Home' component={Home} 
+           options={({ navigation }) => ({
+            title: 'Conversor de Moedas do Antonio Pedrosa',
+            headerTitleStyle: styles.headerTitle,
+          })}/>
+          <Stack.Screen name='Dolar' component={Dolar}  
+          options={({ navigation }) => ({
+            title: 'Conversor de Moedas do Antonio Pedrosa',
+            headerTitleStyle: styles.headerTitle,
+          })}/>
+          <Stack.Screen name='Euro' component={Euro}  
+            options={({ navigation }) => ({
+            title: 'Conversor de Moedas do Antonio Pedrosa',
+            headerTitleStyle: styles.headerTitle,
+          })}/>
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  headerTitle: {
+    fontSize: 15
+  }
 });
+
+export default App;
